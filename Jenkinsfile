@@ -25,7 +25,6 @@ pipeline {
 				}
 
 				
-
 				stage('TEST') {
 
 					agent { slave 'slave2' }
