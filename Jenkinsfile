@@ -1,67 +1,73 @@
 pipeline {
 
-				agent any 
+			agent none 
 
-				stages {
+			stages {
 
-					stage('BUILD') {
+				stage('BUILD') {
 
-						steps {
+					agent { slave 'slave1' }
 
-							sh '''
+					steps {
 
-								pwd
+						sh '''
 
-								sleep 5
+							pwd
 
-								echo This is the fist stage: BUILD
+							sleep 5
 
-							'''
+							echo This is the fist stage: BUILD
 
-						}	
+						'''
 
-					}
+					}	
 
-					
+				}
 
-					stage('TEST') {
+				
 
-						steps {
+				stage('TEST') {
 
-							sh '''
+					agent { slave 'slave2' }
 
-								pwd
+					steps {
 
-								sleep 5
+						sh '''
 
-								echo This is the fist stage: TEST
+							pwd
 
-							'''
+							sleep 5
 
-						}	
+							echo This is the fist stage: TEST
 
-					}
+						'''
 
-					
+					}	
 
-					stage('DEPLOY') {
+				}
 
-						steps {
+				
 
-							sh '''
+				stage('DEPLOY') {
 
-								pwd
+					agent { label 'master' }
 
-								sleep 5
+					steps {
 
-								echo This is the fist stage: DEPLOY
+						sh '''
 
-							'''
+							pwd
 
-						}	
+							sleep 5
 
-					}
+							echo This is the fist stage: DEPLOY
+
+						'''
+
+					}	
 
 				}
 
 			}
+
+		}
