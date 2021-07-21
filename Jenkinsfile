@@ -2,7 +2,7 @@ pipeline {
 	agent none 
 	stages {
 		stage('BUILD') {
-			agent { slave 'slave1' }
+			agent { label 'slave1' }
 			steps {
 				sh '''
 					pwd
@@ -13,7 +13,7 @@ pipeline {
 		}
 		
 		stage('TEST') {
-			agent { slave 'slave2' }
+			agent { label 'slave2' }
 			steps {
 				sh '''
 					pwd
